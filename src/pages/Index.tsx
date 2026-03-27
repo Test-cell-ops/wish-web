@@ -1,16 +1,29 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import PasswordGate from "@/components/PasswordGate";
+import CardReveal from "@/components/CardReveal";
+import MessagePage from "@/components/MessagePage";
+import ThankYouPage from "@/components/ThankYouPage";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+type Stage = "password" | "cards" | "message" | "thankyou";
+
+const Index = () => {
+  const [stage, setStage] = useState<Stage>("password");
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <AnimatePresence mode="wait">
+      {stage === "password" && (
+        <PasswordGate key="pw" onSuccess={() => setStage("cards")} />
+      )}
+      {stage === "cards" && (
+        <CardReveal key="cards" onComplete={() => setStage("message")} />
+      )}
+      {stage === "message" && (
+        <MessagePage key="msg" onComplete={() => setStage("thankyou")} />
+      )}
+      {stage === "thankyou" && <ThankYouPage key="ty" />}
+    </AnimatePresence>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
