@@ -1,6 +1,6 @@
-import { useMemo, forwardRef } from "react";
+import { useMemo } from "react";
 
-const Sparkles = forwardRef<HTMLDivElement, { count?: number }>(({ count = 20 }, ref) => {
+const Sparkles = ({ count = 20 }: { count?: number }) => {
   const sparkles = useMemo(() => {
     return Array.from({ length: count }, (_, i) => ({
       id: i,
@@ -12,7 +12,7 @@ const Sparkles = forwardRef<HTMLDivElement, { count?: number }>(({ count = 20 },
   }, [count]);
 
   return (
-    <div ref={ref} className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
       {sparkles.map((s) => (
         <div
           key={s.id}
@@ -29,8 +29,6 @@ const Sparkles = forwardRef<HTMLDivElement, { count?: number }>(({ count = 20 },
       ))}
     </div>
   );
-});
-
-Sparkles.displayName = "Sparkles";
+};
 
 export default Sparkles;
