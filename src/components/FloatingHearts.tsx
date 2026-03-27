@@ -1,6 +1,6 @@
-import { useMemo } from "react";
+import { useMemo, forwardRef } from "react";
 
-const FloatingHearts = ({ count = 15 }: { count?: number }) => {
+const FloatingHearts = forwardRef<HTMLDivElement, { count?: number }>(({ count = 15 }, ref) => {
   const hearts = useMemo(() => {
     return Array.from({ length: count }, (_, i) => ({
       id: i,
@@ -13,7 +13,7 @@ const FloatingHearts = ({ count = 15 }: { count?: number }) => {
   }, [count]);
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div ref={ref} className="fixed inset-0 pointer-events-none overflow-hidden z-0">
       {hearts.map((heart) => (
         <div
           key={heart.id}
@@ -32,6 +32,8 @@ const FloatingHearts = ({ count = 15 }: { count?: number }) => {
       ))}
     </div>
   );
-};
+});
+
+FloatingHearts.displayName = "FloatingHearts";
 
 export default FloatingHearts;
