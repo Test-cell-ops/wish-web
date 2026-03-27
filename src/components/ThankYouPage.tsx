@@ -75,16 +75,13 @@ const ThankYouPage = () => {
             href="https://wa.me/919326005217"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-3 rounded-xl bg-[hsl(142,70%,40%)] font-display text-base text-white tracking-wider shadow-romantic transition-all duration-300"
+            className="inline-flex items-center gap-3 px-8 py-3 rounded-xl bg-primary font-display text-base text-primary-foreground tracking-wider shadow-romantic transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <span className="text-xl">💚</span>
             WhatsApp Me
           </motion.a>
-          <p className="font-body text-sm text-muted-foreground mt-3">
-            +91 93260 05217
-          </p>
         </motion.div>
       </div>
     </motion.div>

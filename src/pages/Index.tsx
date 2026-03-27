@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import PasswordGate from "@/components/PasswordGate";
 import CardReveal from "@/components/CardReveal";
@@ -7,40 +7,59 @@ import ThankYouPage from "@/components/ThankYouPage";
 
 type Stage = "password" | "cards" | "message" | "thankyou";
 
-const MUSIC_URL = "https://cdn.pixabay.com/audio/2024/11/28/audio_3a4b4c9db2.mp3";
+const MUSIC_PATH = "/romantic-melody.mp3";
 
 const Index = () => {
   const [stage, setStage] = useState<Stage>("password");
+  const [showMusicButton, setShowMusicButton] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const startMusic = () => {
-    if (!audioRef.current) {
-      const audio = new Audio(MUSIC_URL);
-      audio.loop = true;
-      audio.volume = 0.15;
-      audioRef.current = audio;
+  const playMusic = async () => {
+    if (!audioRef.current) return;
+
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.15;
+
+    try {
+      await audioRef.current.play();
+      setShowMusicButton(false);
+    } catch {
+      setShowMusicButton(true);
     }
-    audioRef.current.play().catch(() => {});
   };
 
   const handlePasswordSuccess = () => {
-    startMusic();
+    void playMusic();
     setStage("cards");
   };
 
   return (
-    <AnimatePresence mode="wait">
-      {stage === "password" && (
-        <PasswordGate key="pw" onSuccess={handlePasswordSuccess} />
+    <>
+      <audio ref={audioRef} src={MUSIC_PATH} preload="auto" />
+
+      <AnimatePresence mode="wait">
+        {stage === "password" && (
+          <PasswordGate key="pw" onSuccess={handlePasswordSuccess} />
+        )}
+        {stage === "cards" && (
+          <CardReveal key="cards" onComplete={() => setStage("message")} />
+        )}
+        {stage === "message" && (
+          <MessagePage key="msg" onComplete={() => setStage("thankyou")} />
+        )}
+        {stage === "thankyou" && <ThankYouPage key="ty" />}
+      </AnimatePresence>
+
+      {showMusicButton && stage !== "password" && (
+        <button
+          type="button"
+          onClick={() => void playMusic()}
+          className="fixed bottom-4 right-4 z-50 rounded-full bg-primary px-4 py-2 font-display text-sm text-primary-foreground shadow-romantic transition-all duration-300 hover:scale-105"
+        >
+          Tap to play music 🎵
+        </button>
       )}
-      {stage === "cards" && (
-        <CardReveal key="cards" onComplete={() => setStage("message")} />
-      )}
-      {stage === "message" && (
-        <MessagePage key="msg" onComplete={() => setStage("thankyou")} />
-      )}
-      {stage === "thankyou" && <ThankYouPage key="ty" />}
-    </AnimatePresence>
+    </>
   );
 };
 
