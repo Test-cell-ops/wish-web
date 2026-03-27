@@ -58,6 +58,34 @@ const ThankYouPage = () => {
         >
           Happy Birthday, Shreya! 🎉
         </motion.div>
+
+        <motion.div
+          className="mt-16 bg-card border border-wine rounded-2xl p-6 md:p-8 shadow-romantic max-w-md mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 4, duration: 1 }}
+        >
+          <p className="font-display text-lg md:text-xl text-cream mb-4 tracking-wide">
+            If you wish to say me something... 💬
+          </p>
+          <p className="font-body text-base text-muted-foreground mb-6">
+            Message me on WhatsApp
+          </p>
+          <motion.a
+            href="https://wa.me/919326005217"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-3 rounded-xl bg-[hsl(142,70%,40%)] font-display text-base text-white tracking-wider shadow-romantic transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="text-xl">💚</span>
+            WhatsApp Me
+          </motion.a>
+          <p className="font-body text-sm text-muted-foreground mt-3">
+            +91 93260 05217
+          </p>
+        </motion.div>
       </div>
     </motion.div>
   );

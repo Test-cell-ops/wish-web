@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 import PasswordGate from "@/components/PasswordGate";
 import CardReveal from "@/components/CardReveal";
@@ -7,13 +7,31 @@ import ThankYouPage from "@/components/ThankYouPage";
 
 type Stage = "password" | "cards" | "message" | "thankyou";
 
+const MUSIC_URL = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3";
+
 const Index = () => {
   const [stage, setStage] = useState<Stage>("password");
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const startMusic = () => {
+    if (!audioRef.current) {
+      const audio = new Audio(MUSIC_URL);
+      audio.loop = true;
+      audio.volume = 0.15;
+      audioRef.current = audio;
+    }
+    audioRef.current.play().catch(() => {});
+  };
+
+  const handlePasswordSuccess = () => {
+    startMusic();
+    setStage("cards");
+  };
 
   return (
     <AnimatePresence mode="wait">
       {stage === "password" && (
-        <PasswordGate key="pw" onSuccess={() => setStage("cards")} />
+        <PasswordGate key="pw" onSuccess={handlePasswordSuccess} />
       )}
       {stage === "cards" && (
         <CardReveal key="cards" onComplete={() => setStage("message")} />
