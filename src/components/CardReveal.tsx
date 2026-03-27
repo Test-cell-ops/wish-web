@@ -26,28 +26,28 @@ const cards = [
     letter: "R",
     heading: "Resonance",
     content:
-      "of curiosity, knowledge, ambition and passion. This is truly magical that creates safe space around you. I love this :)",
+      "Of curiosity, knowledge, ambition and passion. This is truly magical that creates safe space around you. I love this :)",
     emoji: "✨",
   },
   {
     letter: "E",
     heading: "Elegance",
     content:
-      "grace and beauty. You're far more beautiful than you realize, not just in how you look but in how you are. Every time I see you or think of you, I fall a little more harder and the better.",
+      "Grace and beauty. You're far more beautiful than you realize, not just in how you look but in how you are. Every time I see you or think of you, I fall a little more harder and the better.",
     emoji: "🌹",
   },
   {
     letter: "Y",
     heading: "Youthfulness",
     content:
-      "young spirit of not giving up. This makes you glow even more. You deserve every happiness of this world, everything, the best.",
+      "Young spirit of not giving up. This makes you glow even more. You deserve every happiness of this world, everything, the best.",
     emoji: "🔥",
   },
   {
     letter: "A",
     heading: "Awesome",
     content:
-      "last letter of your name and just the way you're — awesome, amazing, amusing. May every road of your life, goes through the path of happiness and without a single thorn on the way. Always keep smiling, growing and I'll be always be the happiest person for you, behind you for cheering.",
+      "Last letter of your name and just the way you're - awesome, amazing, amusing. May every road of your life, goes through the path of happiness and without a single thorn on the way. Always keep smiling, growing and I'll be always be the happiest person for you, behind you for cheering.",
     emoji: "💖",
   },
 ];
