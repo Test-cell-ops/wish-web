@@ -7,7 +7,7 @@ import ThankYouPage from "@/components/ThankYouPage";
 
 type Stage = "password" | "cards" | "message" | "thankyou";
 
-const MUSIC_URL = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3";
+const MUSIC_URL = "https://cdn.pixabay.com/audio/2024/11/28/audio_3a4b4c9db2.mp3";
 
 const Index = () => {
   const [stage, setStage] = useState<Stage>("password");
